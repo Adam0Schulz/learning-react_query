@@ -1,0 +1,53 @@
+{
+  "people": [
+    {
+      "id": 1,
+      "firstname": "Soheil",
+      "lastname": "is the best person ever",
+      "address": "thesomegade 7",
+      "phone": 8705406
+    },
+    {
+      "id": 2,
+      "firstname": "Soheil",
+      "lastname": "Newman02",
+      "address": "thesomegade 7",
+      "phone": 8705
+    },
+    {
+      "id": 3,
+      "firstname": "Jack",
+      "lastname": "Schulz",
+      "address": "thesomegade 7",
+      "phone": 8705406
+    },
+    {
+      "id": 4,
+      "firstname": "Samson",
+      "lastname": "Schulz",
+      "address": "samsongade 7",
+      "phone": 5658954
+    },
+    {
+      "id": 5,
+      "firstname": "Simon",
+      "lastname": "Sch",
+      "address": "blablagade 7",
+      "phone": 58896654
+    },
+    {
+      "id": 6,
+      "firstname": "Anders",
+      "lastname": "Magnussen",
+      "address": "themostvikinggade 7",
+      "phone": 58995589
+    },
+    {
+      "id": 7,
+      "firstname": "Adam",
+      "lastname": "Prick",
+      "address": "thebestgade 7",
+      "phone": 5699887
+    }
+  ]
+}
