@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { deletePerson } from "api/calls";
+import { createPerson } from "api/calls";
 import { Person } from "api/models";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 
 
-export const useDelPerson = (id: number) => {
+export const useAddPerson = () => {
     const queryClient = useQueryClient();
     return useMutation(
-        () => deletePerson(id),
+        (data: Person) => createPerson(data),
         {
-            onMutate: async () => {
+            onMutate: async (data) => {
 
                 // Stop the queries that may affect this operation
                 await queryClient.cancelQueries(["people"])
@@ -20,7 +20,7 @@ export const useDelPerson = (id: number) => {
 
                 // Modify cache to reflect this optimistic update
                 // @ts-ignore
-                queryClient.setQueryData(["people"], (oldPeople: Person[]) => oldPeople.filter(person => person.id !== id));
+                queryClient.setQueryData(["people"], (oldPeople: Person[]) => [...oldPeople, data]);
 
                 // Return a snapshot so we can rollback in case of failure
                 return {

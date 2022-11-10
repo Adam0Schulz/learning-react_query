@@ -1,6 +1,6 @@
 import { useParams } from "react-router"
 import Button from "react-bootstrap/Button"
-import { FormEvent, useState } from "react"
+import { useState } from "react"
 import {  OptionalPerson } from "api/models"
 import { useUpdatePerson } from "hooks/useUpdatePerson"
 import { useGetPerson } from "hooks/useGetPerson"
@@ -11,7 +11,7 @@ const Index = () => {
 
   const id = Number(useParams().id)
   const [isEdit, setIsEdit] = useState<boolean>(false)
-  const [editedPerson, setEditedPerson] = useState<OptionalPerson | null>(null)
+  const [editedPerson, setEditedPerson] = useState<OptionalPerson>({})
 
   if (!Number(id)) {
     window.location.href = "/profile"
@@ -25,11 +25,11 @@ const Index = () => {
   if (isError) return <h1>Oops! Somethings wrong!</h1>
 
   const toggleEdit = () => {
-    setEditedPerson(null)
+    setEditedPerson({})
     setIsEdit(!isEdit)
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = () => {
     updateMutate({...person, ...editedPerson})
     toggleEdit()
   }
