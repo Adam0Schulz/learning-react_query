@@ -10,6 +10,8 @@ export const useAddPerson = () => {
     return useMutation(
         (data: Person) => createPerson(data),
         {
+
+            //Optimistic updates
             onMutate: async (data) => {
 
                 // Stop the queries that may affect this operation

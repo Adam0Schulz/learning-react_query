@@ -6,6 +6,7 @@ import { useUpdatePerson } from "hooks/useUpdatePerson"
 import { useGetPerson } from "hooks/useGetPerson"
 import { Link } from "react-router-dom"
 import { useDelPerson } from "hooks/useDelPerson"
+import { isDeleteExpression } from "typescript"
 
 const Index = () => {
 
@@ -34,6 +35,11 @@ const Index = () => {
     toggleEdit()
   }
 
+  const deletion = () => {
+    delMute()
+    window.location.href = "/"
+  }
+
 
 
   return (
@@ -55,7 +61,7 @@ const Index = () => {
           <p>{person.phone}</p>
           <Link to={"/"}><Button>Home</Button></Link>
           <Button onClick={toggleEdit} variant="secondary">Edit</Button>
-          <Button onClick={() => delMute()} variant="secondary" style={{backgroundColor: "darkred", border: "none"}}>Delete</Button>
+          <Button onClick={() => deletion()} variant="secondary" style={{backgroundColor: "darkred", border: "none"}}>Delete</Button>
         </>
       }
     </div>

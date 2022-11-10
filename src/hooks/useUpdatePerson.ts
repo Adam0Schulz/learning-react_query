@@ -10,6 +10,7 @@ export const useUpdatePerson = (id: number) => {
     return useMutation(
         (data: Person) => updatePerson(id, data),
         {
+            // Optimistic update
             onMutate: async (data) => {
 
                  // Stop the queries that may affect this operation
@@ -28,17 +29,21 @@ export const useUpdatePerson = (id: number) => {
             },
             onError: (_error, _data, { snapshot }: any) => {
 
-                // Set data back to the snapshot
-                queryClient.setQueryData(["people", id], snapshot)
-
                 // Error message
                 toast.error("Error updating person")
+
+                // Set data back to the snapshot
+                queryClient.setQueryData(["people", id], snapshot)
+   
             },
             onSettled: () => {
 
                 // Invalidate query
                 queryClient.invalidateQueries(["people", id])
 
+                
+            },
+            onSuccess: () => {
                 // Success message
                 toast.success("Person updated successfully")
             }

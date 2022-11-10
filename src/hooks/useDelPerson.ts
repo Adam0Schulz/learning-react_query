@@ -10,6 +10,8 @@ export const useDelPerson = (id: number) => {
     return useMutation(
         () => deletePerson(id),
         {
+
+            //Optimistic updates
             onMutate: async () => {
 
                 // Stop the queries that may affect this operation

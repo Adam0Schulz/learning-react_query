@@ -27,7 +27,7 @@ const Index = () => {
 
     return (
         <div>
-            {personData?.map((item: Person) => <Link to={"/profile/" + item.id}><h1>{item.firstname}</h1></Link>)}
+            {personData?.map((item: Person) => <Link key={item.id} to={"/profile/" + item.id}><h1>{item.firstname}</h1></Link>)}
             <Button onClick={toggleAddForm} style={isFormOpened ? { backgroundColor: "gray" } : { backgroundColor: "green" }}>{isFormOpened ? "Close" : "Add"}</Button>
             {isFormOpened &&
                 <>
