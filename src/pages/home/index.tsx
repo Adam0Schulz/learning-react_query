@@ -1,14 +1,15 @@
-import { OptionalPerson, Person } from 'api/models'
+import { Person } from 'api/models'
 import { Link } from 'react-router-dom'
 import { useGetPeople } from 'hooks/useGetPeople'
 import { Button } from 'react-bootstrap'
 import { useAddPerson } from 'hooks/useAddPerson'
-import { useState } from 'react'
+import { FormEvent, useRef, useState } from 'react'
+import { usePersonFormRef } from 'hooks/usePersonFormRef'
 
 const Index = () => {
 
     const [isFormOpened, setIsFormOpened] = useState<boolean>(false)
-    const [newPerson, setNewPerson] = useState<OptionalPerson>({})
+    const { form, getFormData } = usePersonFormRef()
     const { data: personData, isLoading, isError } = useGetPeople()
     const { mutate: addMutation } = useAddPerson()
 
@@ -20,8 +21,9 @@ const Index = () => {
         setIsFormOpened(!isFormOpened)
     }
 
-    const handleSubmit = () => {
-        addMutation(newPerson as Person)
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault()
+        addMutation(getFormData())
         toggleAddForm()
     }
 
@@ -30,14 +32,14 @@ const Index = () => {
             {personData?.map((item: Person) => <Link key={item.id} to={"/profile/" + item.id}><h1>{item.firstname}</h1></Link>)}
             <Button onClick={toggleAddForm} style={isFormOpened ? { backgroundColor: "gray" } : { backgroundColor: "green" }}>{isFormOpened ? "Close" : "Add"}</Button>
             {isFormOpened &&
-                <>
-                    <input onChange={(e) => setNewPerson({ ...newPerson, firstname: e.target.value })} type="text" placeholder="First Name" required />
-                    <input onChange={(e) => setNewPerson({ ...newPerson, lastname: e.target.value })} type="text" placeholder="Last Name" required />
-                    <input onChange={(e) => setNewPerson({ ...newPerson, address: e.target.value })} type="text" placeholder="Address" required />
-                    <input onChange={(e) => setNewPerson({ ...newPerson, phone: Number(e.target.value) })} type="number" placeholder="Phone" required />
-                    
-                    <Button onClick={handleSubmit}>Save</Button>
-                </>
+                <form onSubmit={handleSubmit}>
+                    <input ref={form.firstname} type="text" placeholder="First Name" required />
+                    <input ref={form.lastname} type="text" placeholder="Last Name" required />
+                    <input ref={form.address} type="text" placeholder="Address" required />
+                    <input ref={form.phone} type="number" placeholder="Phone" required />
+
+                    <Button type="submit">Save</Button>
+                </form>
             }
         </div>
     )

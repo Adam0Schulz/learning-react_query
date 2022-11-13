@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient} from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { updatePerson } from "api/calls";
 import { Person } from "api/models";
-import {toast} from "react-toastify";
+import { toast, ToastContent } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -13,7 +13,7 @@ export const useUpdatePerson = (id: number) => {
             // Optimistic update
             onMutate: async (data) => {
 
-                 // Stop the queries that may affect this operation
+                // Stop the queries that may affect this operation
                 await queryClient.cancelQueries(["people", id])
 
                 // Get a snapshot of current data
@@ -30,18 +30,18 @@ export const useUpdatePerson = (id: number) => {
             onError: (_error, _data, { snapshot }: any) => {
 
                 // Error message
-                toast.error("Error updating person")
+                toast.error("Oops! Something went wrong")
 
                 // Set data back to the snapshot
                 queryClient.setQueryData(["people", id], snapshot)
-   
+
             },
             onSettled: () => {
 
                 // Invalidate query
                 queryClient.invalidateQueries(["people", id])
 
-                
+
             },
             onSuccess: () => {
                 // Success message

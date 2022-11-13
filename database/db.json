@@ -26,12 +26,12 @@
       "firstname": "Samson",
       "lastname": "Schulz",
       "address": "samsongade 7",
-      "phone": 5658954
+      "phone": 5658954556
     },
     {
       "id": 5,
       "firstname": "Simon",
-      "lastname": "Sch",
+      "lastname": "Schulz",
       "address": "blablagade 7",
       "phone": 58896654
     },
@@ -39,15 +39,29 @@
       "id": 6,
       "firstname": "Anders",
       "lastname": "Magnussen",
-      "address": "themostvikinggade 2555565",
+      "address": "themostvikinggade 56",
       "phone": 58995589
     },
     {
-      "id": 7,
-      "firstname": "Adam",
+      "firstname": "Ada",
       "lastname": "Prick",
-      "address": "thebestgade 777",
-      "phone": 5699887
+      "address": "thebestgade 7777",
+      "phone": 5699887,
+      "id": 7
+    },
+    {
+      "firstname": "dfdfd",
+      "lastname": "fdfd",
+      "address": "dffd",
+      "phone": 5884,
+      "id": 8
+    },
+    {
+      "firstname": "dfdf",
+      "lastname": "fdfd",
+      "address": "fdfd",
+      "phone": 5951,
+      "id": 9
     }
   ]
 }
