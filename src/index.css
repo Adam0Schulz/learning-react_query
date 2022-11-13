@@ -21,6 +21,18 @@ code {
   margin: 5em 0;
 }
 
+section {
+  border-bottom: 2px dashed #EEE;
+}
+
+section * {
+  display: inline-block;
+}
+
+section button {
+  float: right;
+}
+
 form {
   margin-top: 2em;
   display: flex;

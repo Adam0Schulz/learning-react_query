@@ -1,27 +1,6 @@
 {
   "people": [
     {
-      "id": 1,
-      "firstname": "Soheil",
-      "lastname": "is the best person ever",
-      "address": "thesomegade 7",
-      "phone": 8705406
-    },
-    {
-      "phone": 87052525,
-      "address": "thesomegade 7",
-      "lastname": "Newman02",
-      "firstname": "Soheil",
-      "id": 2
-    },
-    {
-      "id": 3,
-      "firstname": "Jack",
-      "lastname": "Schulz",
-      "address": "thesomegade 7",
-      "phone": 8705406
-    },
-    {
       "id": 4,
       "firstname": "Samson",
       "lastname": "Schulz",
@@ -43,18 +22,18 @@
       "phone": 58995589
     },
     {
-      "firstname": "Ada",
-      "lastname": "Prick",
-      "address": "thebestgade 7777",
-      "phone": 5699887,
-      "id": 7
+      "phone": 12457889,
+      "address": "bendoverGade 69",
+      "lastname": "Sensei",
+      "firstname": "Robo-felator",
+      "id": 12
     },
     {
-      "phone": 12457889,
-      "address": "fdfdf",
-      "lastname": "dfdfd",
-      "firstname": "afdfd",
-      "id": 11
+      "phone": 12457898,
+      "address": "idk 420",
+      "lastname": "ihaveaquestion",
+      "firstname": "Soheil-init",
+      "id": 13
     }
   ]
 }

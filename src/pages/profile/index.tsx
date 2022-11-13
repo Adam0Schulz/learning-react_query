@@ -9,7 +9,6 @@ import { useDelPerson } from "hooks/useDelPerson"
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { PersonValidationSchema } from "yup/FormSchemas"
-import { toast } from "react-toastify";
 
 const Index = () => {
 
@@ -27,7 +26,7 @@ const Index = () => {
 
   const { data: person, isLoading, isError } = useGetPerson(id)
   const { mutate: updateMutate } = useUpdatePerson(id)
-  const { mutate: delMute } = useDelPerson(id)
+  const { mutate: delMute } = useDelPerson()
 
   if (isLoading) return <h1>Loading...</h1>
   if (isError) return <h1>Oops! Somethings wrong!</h1>
@@ -43,7 +42,7 @@ const Index = () => {
   }
 
   const deletion = () => {
-    delMute()
+    delMute(id)
     window.location.href = "/"
   }
 
@@ -54,13 +53,13 @@ const Index = () => {
       {isEdit ?
         <form onSubmit={handleSubmit(submitForm)}>
           <input className={errors.firstname && "error_input"} {...register("firstname")} type="text" defaultValue={person.firstname} />
-          <p className="error_message">{errors.firstname?.message}</p>
+            <p className="error_message">{errors.firstname?.message}</p>
           <input className={errors.lastname && "error_input"} {...register("lastname")} type="text" defaultValue={person.lastname} />
-          <p className="error_message">{errors.lastname?.message}</p>
+            <p className="error_message">{errors.lastname?.message}</p>
           <input className={errors.address && "error_input"} {...register("address")} type="text" defaultValue={person.address} />
-          <p className="error_message">{errors.address?.message}</p>
+            <p className="error_message">{errors.address?.message}</p>
           <input className={errors.phone && "error_input"} {...register("phone")} type="number" defaultValue={person.phone} />
-          <p className="error_message">{errors.phone?.message}</p>
+            <p className="error_message">{errors.phone?.message}</p>
           <Button type="submit" style={{ backgroundColor: "green", border: "none" }}>Save</Button>
           <Button onClick={toggleEdit} variant="secondary">Cancel</Button>
         </form>

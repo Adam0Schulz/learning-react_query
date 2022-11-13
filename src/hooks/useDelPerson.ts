@@ -5,14 +5,14 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export const useDelPerson = (id: number) => {
+export const useDelPerson = () => {
     const queryClient = useQueryClient();
     return useMutation(
-        () => deletePerson(id),
+        (id: number) => deletePerson(id),
         {
 
             //Optimistic updates
-            onMutate: async () => {
+            onMutate: async (id) => {
 
                 // Stop the queries that may affect this operation
                 await queryClient.cancelQueries(["people"])
@@ -35,7 +35,7 @@ export const useDelPerson = (id: number) => {
                 queryClient.setQueryData(["people"], snapshot)
 
                 // Error message
-                toast.error("Error updating person")
+                toast.error("Error deleting person")
             },
             onSettled: () => {
 
@@ -43,7 +43,7 @@ export const useDelPerson = (id: number) => {
                 queryClient.invalidateQueries(["people"])
 
                 // Success message
-                toast.success("Person updated successfully")
+                toast.success("Person deleted successfully")
             }
         }
     )

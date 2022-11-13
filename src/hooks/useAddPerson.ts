@@ -35,7 +35,7 @@ export const useAddPerson = () => {
                 queryClient.setQueryData(["people"], snapshot)
 
                 // Error message
-                toast.error("Error updating person")
+                toast.error("Error adding person")
             },
             onSettled: () => {
 
@@ -43,7 +43,7 @@ export const useAddPerson = () => {
                 queryClient.invalidateQueries(["people"])
 
                 // Success message
-                toast.success("Person updated successfully")
+                toast.success("Person added successfully")
             }
         }
     )
