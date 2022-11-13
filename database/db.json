@@ -8,11 +8,11 @@
       "phone": 8705406
     },
     {
-      "id": 2,
-      "firstname": "Soheil",
-      "lastname": "Newman02",
+      "phone": 87052525,
       "address": "thesomegade 7",
-      "phone": 8705
+      "lastname": "Newman02",
+      "firstname": "Soheil",
+      "id": 2
     },
     {
       "id": 3,
@@ -50,18 +50,11 @@
       "id": 7
     },
     {
-      "firstname": "dfdfd",
-      "lastname": "fdfd",
-      "address": "dffd",
-      "phone": 5884,
-      "id": 8
-    },
-    {
-      "firstname": "dfdf",
-      "lastname": "fdfd",
-      "address": "fdfd",
-      "phone": 5951,
-      "id": 9
+      "phone": 12457889,
+      "address": "fdfdf",
+      "lastname": "dfdfd",
+      "firstname": "afdfd",
+      "id": 11
     }
   ]
 }

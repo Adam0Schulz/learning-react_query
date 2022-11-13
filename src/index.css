@@ -5,9 +5,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#root {
+  width: 20em;
+  margin: 5em 0;
+}
+
+form {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  max-width: 30em;
+}
+
+.error_input, .error_input:focus, .error_input:active, .error_input:focus-visible {
+  border: 1px solid red;
+  border-radius: 5px;
+  outline: none;
+}
+
+.error_message {
+  margin-bottom: 2em;
+  color: red;
 }

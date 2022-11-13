@@ -4,12 +4,17 @@ import { useGetPeople } from 'hooks/useGetPeople'
 import { Button } from 'react-bootstrap'
 import { useAddPerson } from 'hooks/useAddPerson'
 import { FormEvent, useRef, useState } from 'react'
-import { usePersonFormRef } from 'hooks/usePersonFormRef'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { PersonValidationSchema } from 'yup/FormSchemas'
 
-const Index = () => {
+const Indexo = () => {
 
     const [isFormOpened, setIsFormOpened] = useState<boolean>(false)
-    const { form, getFormData } = usePersonFormRef()
+    const { register, handleSubmit, formState: {errors}} = useForm<Person>({
+        resolver: yupResolver(PersonValidationSchema),
+        shouldUnregister: true
+    })
     const { data: personData, isLoading, isError } = useGetPeople()
     const { mutate: addMutation } = useAddPerson()
 
@@ -21,9 +26,8 @@ const Index = () => {
         setIsFormOpened(!isFormOpened)
     }
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault()
-        addMutation(getFormData())
+    const handleForm = (data: Person) => {
+        addMutation(data)
         toggleAddForm()
     }
 
@@ -32,11 +36,15 @@ const Index = () => {
             {personData?.map((item: Person) => <Link key={item.id} to={"/profile/" + item.id}><h1>{item.firstname}</h1></Link>)}
             <Button onClick={toggleAddForm} style={isFormOpened ? { backgroundColor: "gray" } : { backgroundColor: "green" }}>{isFormOpened ? "Close" : "Add"}</Button>
             {isFormOpened &&
-                <form onSubmit={handleSubmit}>
-                    <input ref={form.firstname} type="text" placeholder="First Name" required />
-                    <input ref={form.lastname} type="text" placeholder="Last Name" required />
-                    <input ref={form.address} type="text" placeholder="Address" required />
-                    <input ref={form.phone} type="number" placeholder="Phone" required />
+                <form onSubmit={handleSubmit(handleForm)}>
+                    <input className={errors.firstname && "error_input"} {...register("firstname")} type="text" placeholder="First Name"/>
+                    <p className="error_message">{errors.firstname?.message}</p>
+                    <input className={errors.lastname && "error_input"} {...register("lastname")} type="text" placeholder="Last Name"/>
+                    <p className="error_message">{errors.lastname?.message}</p>
+                    <input className={errors.address && "error_input"} {...register("address")} type="text" placeholder="Address"/>
+                    <p className="error_message">{errors.address?.message}</p>
+                    <input className={errors.phone && "error_input"} {...register("phone")} type="number" placeholder="Phone"/>
+                    <p className="error_message">{errors.phone?.message}</p>
 
                     <Button type="submit">Save</Button>
                 </form>
@@ -45,4 +53,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default Indexo
